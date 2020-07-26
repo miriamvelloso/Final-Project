@@ -2,3 +2,4 @@ __pycache__
 input/FER
 input/fer20131.csv
 input/fer2013_mini_XCEPTION.110-0.65.hdf5
+.DS_Store
