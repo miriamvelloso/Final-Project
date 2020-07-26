@@ -1,6 +1,9 @@
 
 from chatterbot import ChatBot 
 from chatterbot.trainers import ListTrainer
+from recommended_system.getRecom import getRecommendation
+from recommended_system.webscrapping import getMovie
+import random
 
 
 bot = ChatBot(
@@ -16,18 +19,26 @@ trainer=ListTrainer(bot) # set the trainer
 
 trainer.train(conv) 
 print("Hello, my name is Candice and I'm here to help you.")
+
+
+
 while True:
     
     try:
         request=input("You: ")
-        if request.startswith("http") or request.endswith(".jpg"):
-            print(request)
 
+        if request.startswith("http") or request.endswith(".jpg"):
+            mood="Sad"
+            print("output emocion: ")
+            print("Do you want a recommendation?")
+            request=input("You: ")
+            if request=="Yes":
+                getRecommendation(mood)
+                
         elif request == 'goodbye':
             break
         
         else:
-
             response=bot.get_response(request)
             print("Bot :", response)
     except(KeyboardInterrupt,EOFError,SystemExit):
