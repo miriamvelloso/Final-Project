@@ -2,8 +2,10 @@
 from chatterbot import ChatBot 
 from chatterbot.trainers import ListTrainer
 from recommended_system.getRecom import getRecommendation
-from recommended_system.webscrapping import getMovie
+from recommended_system.movies import getMovie
 import random
+from src.mood import getMood
+
 
 
 bot = ChatBot(
@@ -28,7 +30,7 @@ while True:
         request=input("You: ")
 
         if request.startswith("http") or request.endswith(".jpg"):
-            mood="Sad"
+            mood=getMood(request)
             print("output emocion: ")
             print("Do you want a recommendation?")
             request=input("You: ")

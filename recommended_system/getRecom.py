@@ -1,4 +1,4 @@
-from recommended_system.webscrapping import getMovie
+from recommended_system.movies import getMovie
 
 
 def getRecommendation(mood):
