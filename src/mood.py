@@ -9,7 +9,7 @@ def get_label(argument):
     labels = {0:'Angry', 1:'Disgust', 2:'Fear', 3:'Happy', 4:'Sad' , 5:'Surprise', 6:'Neutral'}
     return(labels.get(argument, "Invalid emotion"))
 
-model_p = os.path.join(os.getcwd(),"input","fer2013_mini_XCEPTION.110-0.65.hdf5")
+model_p = os.path.join(os.getcwd(),"input","model.h5")
 
 def getMood(path):
     model2=load_model(model_p)
