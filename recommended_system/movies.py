@@ -2,9 +2,9 @@ from bs4 import BeautifulSoup
 import re 
 import requests
 import random
-"""from recommended_system.getRecom import getRecommendation"""
 
-def getMovie(emotion): 
+
+def getMovie(mood): 
     url='http://www.imdb.com/search/title?genres='
     end='&title_type=feature&sort=moviemeter, asc'
     recomendaciones={
@@ -16,7 +16,7 @@ def getMovie(emotion):
         "Neutral":url+'comedy,romance'+end,
         "Surprise":url+'mystery'+end
         }
-    res = requests.get(recomendaciones[emotion]) 
+    res = requests.get(recomendaciones[mood]) 
     soup=BeautifulSoup(res.text, "html.parser")
     results=soup.select(".lister-item.mode-advanced h3 a")
     movies=[movie.text for movie in results]
@@ -24,12 +24,12 @@ def getMovie(emotion):
     number_movies=int(input("You: "))
     if len(movies)<number_movies:
         print(f"Please insert a number no greater than {len(movies)}.")
-        getMovie(emotion)
+        getMovie(mood)
     else:
         print(random.sample(movies,number_movies))
 
     return movies
     
-"""return getRecommendation(emotion)"""
+
   
 

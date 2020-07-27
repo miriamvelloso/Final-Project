@@ -30,19 +30,25 @@ while True:
         request=input("You: ")
 
         if request.startswith("http") or request.endswith(".jpg"):
-            mood=getMood(request)
+            """mood=getMood(request)"""
+            mood="Sad"
             print("output emocion: ")
             print("Do you want a recommendation?")
             request=input("You: ")
             if request=="Yes":
                 getRecommendation(mood)
-                
+                print("Do you wish to request another recommendation?")
+                answer=input("You: ")
+                if answer=="yes":
+                    getRecommendation(mood)
+            
         elif request == 'goodbye':
             break
         
         else:
             response=bot.get_response(request)
             print("Bot :", response)
+            
     except(KeyboardInterrupt,EOFError,SystemExit):
         break
 

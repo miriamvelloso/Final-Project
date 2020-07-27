@@ -1,5 +1,5 @@
 from PIL import Image
-import cv2
+from cv2 import cv2
 import matplotlib.pyplot as plt
 from keras.models import load_model
 import numpy as np
