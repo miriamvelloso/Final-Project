@@ -1,15 +1,8 @@
-print("1")
 from chatterbot import ChatBot 
-print("2")
 from chatterbot.trainers import ListTrainer
-print("3")
-from recommended_system.getRecom import getRecommendation
-print("4")
-from recommended_system.movies import getMovie
-print("5")
 import random
-print("6")
 from src.mood import getMood
+from recommended_system.getRecom import getRecommendation
 
 
 bot = ChatBot(
@@ -34,9 +27,9 @@ while True:
         request=input("You: ")
 
         if request.startswith("http") or request.endswith(".jpg"):
-            """mood=getMood(request)"""
-            mood="Sad"
-            print("output emocion: ")
+            mood=getMood(request)
+            
+            print(f"output emocion: {mood} ")
             print("Do you want a recommendation?")
             request=input("You: ")
             if request=="Yes":
