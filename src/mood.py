@@ -15,7 +15,7 @@ def getMood(path):
     model2=load_model(model_p)
     img = Image.open(path)
     face_cascade = cv2.CascadeClassifier('src/haarcascade_frontalface_default.xml')
-    faces = face_cascade.detectMultiScale(np.asarray(img), 1.3, 5)
+    faces = face_cascade.detectMultiScale(np.asarray(img), 1.1, 4)
     for (x, y, w, h) in faces:
         cropped_img = img.crop((x,y,x+w,y+h))
     plt.imshow(cropped_img)
@@ -27,6 +27,6 @@ def getMood(path):
     res = model2.predict(gray)
     result_num = np.argmax(res)
     emotion=get_label(result_num)
-    print("Bot: With a probability of " + str(np.max(res[0]))+"you are feeling...")
+    print("Bot: With a probability of " + str(np.max(res[0]))+" you are feeling...")
     
     return emotion
