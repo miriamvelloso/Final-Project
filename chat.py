@@ -12,7 +12,7 @@ bot = ChatBot(
 ) 
 # create the chatbot
 
-conv=open("greet_data.txt", "r").readlines()
+conv=open("input/greet_data.txt", "r").readlines()
 
 trainer=ListTrainer(bot) # set the trainer
 
@@ -28,15 +28,16 @@ while True:
 
         if request.startswith("http") or request.endswith(".jpg"):
             mood=getMood(request)
-            print(f"You are feeling {mood}.")
+            print(f"...{mood.lower()}.")
             print("Do you want a recommendation?")
             request=input("You: ")
-            if request.lower()=="yes":
+            while request.lower()=="yes":
                 getRecommendation(mood)
                 print("Do you wish to request another recommendation?")
-                answer=input("You: ")
-                if answer.lower()=="yes":
-                    getRecommendation(mood)
+                request=input("You: ")
+            else:
+                print("Thank you! Have a good day! :)")
+                break
             
         elif request == 'goodbye':
             break

@@ -27,6 +27,6 @@ def getMood(path):
     res = model2.predict(gray)
     result_num = np.argmax(res)
     emotion=get_label(result_num)
-    print("Probabilities are " + str(res[0])+"\n")
-    print("Emotion is "+ emotion)
+    print("Bot: With a probability of " + str(np.max(res[0]))+"you are feeling...")
+    
     return emotion

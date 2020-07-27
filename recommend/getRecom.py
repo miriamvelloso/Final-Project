@@ -1,4 +1,4 @@
-from recommended_system.recom import getMovie, int_check, getWeb, getSong
+from recommend.recom import getMovie, int_check, getWeb, getSong
 
 def getRecommendation(mood):
     print("What would you like me to recommend?")
