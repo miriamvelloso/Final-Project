@@ -1,4 +1,34 @@
+from bs4 import BeautifulSoup
+import re 
+import requests
+import random
 import webbrowser
+
+
+def getMovie(mood): 
+    url='http://www.imdb.com/search/title?genres='
+    end='&title_type=feature&sort=moviemeter, asc'
+    recomendaciones={
+        "Sad":url+'drama'+end,
+        "Disgust":url+'sci-fi'+end,
+        "Angry": url+'action'+end,
+        "Fear":url+'horror'+end,
+        "Happy":url+'comedy'+end,
+        "Neutral":url+'comedy,romance'+end,
+        "Surprise":url+'mystery'+end
+        }
+    res = requests.get(recomendaciones[mood]) 
+    soup=BeautifulSoup(res.text, "html.parser")
+    results=soup.select(".lister-item.mode-advanced h3 a")
+    movies=[movie.text for movie in results]
+    print("How many recommendations do you want? Please type in a number.")
+    number_movies=int(input("You: "))
+    if len(movies)<number_movies:
+        print(f"Please insert a number no greater than {len(movies)}.")
+        getMovie(mood)
+    else:
+        print(random.sample(movies,number_movies))
+    return movies
 
 def int_check(l,h,message): #for inputting integers
     while True:
@@ -8,13 +38,9 @@ def int_check(l,h,message): #for inputting integers
             if l<=s<=h:
                 return s
             else:
-                print("\nError in input, please try again.")
-        else:
-            print("\nError in input, please try again.")
+                pass
 
-media_input = int_check(1,3,"\nWhat is it that you'd like to be recommended based on your mood?\n\n1. Images\n2. Songs\n3. Movies\n\nPlease enter the corresponding digit: ")
-mood = "Surprise"
-if media_input==1: 
+def getWeb(mood):
     if mood=='Happy':
         webbrowser.open("https://www.happify.com")
     elif mood=='Sad': 
@@ -39,7 +65,7 @@ if media_input==1:
         webbrowser.open("https://www.buzzfeed.com/pepsimaxuk/photos-with-unbelievable-hidden-surprises")
 
 
-elif media_input==2: 
+def getSong(mood):
     if mood=='Happy':
         webbrowser.get('open -a /Applications/Google\ Chrome.app %s').open('https://open.spotify.com/playlist/37i9dQZF1DX3rxVfibe1L0')
     elif mood=='Sad':
@@ -50,3 +76,9 @@ elif media_input==2:
         webbrowser.get('open -a /Applications/Google\ Chrome.app %s').open('https://open.spotify.com/playlist/37i9dQZF1DX6VdMW310YC7')
     elif mood=='Surprise':
         webbrowser.get('open -a /Applications/Google\ Chrome.app %s').open('https://open.spotify.com/playlist/37i9dQZF1DXcZK031Zeh47?si=WlZ6V-bNQOWGS5T7uD53WQ')
+
+
+    
+
+  
+

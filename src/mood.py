@@ -13,9 +13,9 @@ model_p = os.path.join(os.getcwd(),"input","fer2013_mini_XCEPTION.110-0.65.hdf5"
 
 def getMood(path):
     model2=load_model(model_p)
-    img = cv2.imread(path)
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    faces = face_cascade.detectMultiScale(img, 1.3, 5)
+    img = Image.open(path)
+    face_cascade = cv2.CascadeClassifier('src/haarcascade_frontalface_default.xml')
+    faces = face_cascade.detectMultiScale(np.asarray(img), 1.3, 5)
     for (x, y, w, h) in faces:
         cropped_img = img.crop((x,y,x+w,y+h))
     plt.imshow(cropped_img)
