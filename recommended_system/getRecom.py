@@ -1,14 +1,13 @@
-from recommended_system.movies import getMovie
-
+from recommended_system.recom import getMovie, int_check, getWeb, getSong
 
 def getRecommendation(mood):
     print("What would you like me to recommend?")
-    recommendation=input("You: ")
-    if recommendation=="Song":
-        #llamar función que entra en el dataset y te devuelva una random de la emoción
-        print("song")
-
-    elif recommendation=="Movie":
+    recommendation = int_check(1,3,"\nWhat is it that you'd like to be recommended based on your mood?\n\n1. Images\n2. Songs\n3. Movies\n\nPlease enter the corresponding digit: ")
+    if recommendation==1:
+        return getWeb(mood)
+    elif recommendation==2:
+        return getSong(mood)
+    elif recommendation==3:
         return getMovie(mood)
                 
     else:
