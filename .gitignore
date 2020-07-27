@@ -3,4 +3,3 @@ input/FER
 input/fer20131.csv
 greet_data.yml
 .DS_Store
-input/fer2013_mini_XCEPTION.110-0.65.hdf5
