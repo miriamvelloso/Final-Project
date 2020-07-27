@@ -2,7 +2,7 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 import random
 from src.mood import getMood
-from recommended_system.getRecom import getRecommendation
+from recommend.getRecom import getRecommendation
 
 
 bot = ChatBot(
@@ -12,7 +12,7 @@ bot = ChatBot(
 ) 
 # create the chatbot
 
-conv=open("greet_data.txt", "r").readlines()
+conv=open("input/greet_data.txt", "r").readlines()
 
 trainer=ListTrainer(bot) # set the trainer
 
@@ -28,16 +28,16 @@ while True:
 
         if request.startswith("http") or request.endswith(".jpg"):
             mood=getMood(request)
-            
-            print(f"output emocion: {mood} ")
+            print(f"...{mood.lower()}.")
             print("Do you want a recommendation?")
             request=input("You: ")
-            if request=="Yes":
+            while request.lower()=="yes":
                 getRecommendation(mood)
                 print("Do you wish to request another recommendation?")
-                answer=input("You: ")
-                if answer=="yes":
-                    getRecommendation(mood)
+                request=input("You: ")
+            else:
+                print("Thank you! Have a good day! :)")
+                break
             
         elif request == 'goodbye':
             break
