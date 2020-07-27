@@ -3,3 +3,5 @@ input/FER
 input/fer20131.csv
 greet_data.yml
 .DS_Store
+.ipynb_checkpoints
+src/.ipynb_checkpoints/
