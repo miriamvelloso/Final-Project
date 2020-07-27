@@ -1,11 +1,15 @@
-
+print("1")
 from chatterbot import ChatBot 
+print("2")
 from chatterbot.trainers import ListTrainer
+print("3")
 from recommended_system.getRecom import getRecommendation
+print("4")
 from recommended_system.movies import getMovie
+print("5")
 import random
+print("6")
 from src.mood import getMood
-
 
 
 bot = ChatBot(
@@ -19,7 +23,7 @@ conv=open("greet_data.txt", "r").readlines()
 
 trainer=ListTrainer(bot) # set the trainer
 
-trainer.train(conv) 
+trainer.train(conv)
 print("Hello, my name is Candice and I'm here to help you.")
 
 
