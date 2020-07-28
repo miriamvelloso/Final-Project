@@ -63,7 +63,9 @@ def getWeb(mood):
             webbrowser.open("https://www.buzzfeed.com/adamjkurtz/handwriting-plus-sunsets-equals-art")
     elif mood=='Surprise':
         webbrowser.open("https://www.buzzfeed.com/pepsimaxuk/photos-with-unbelievable-hidden-surprises")
-
+    elif mood=='Fear':
+        webbrowser.open("https://www.eyeem.com/blog/instant-relaxation-11-meditation-pictures-to-calm-the-mind")
+    
 
 def getSong(mood):
     if mood=='Happy':
@@ -76,6 +78,8 @@ def getSong(mood):
         webbrowser.get('open -a /Applications/Google\ Chrome.app %s').open('https://open.spotify.com/playlist/37i9dQZF1DX6VdMW310YC7')
     elif mood=='Surprise':
         webbrowser.get('open -a /Applications/Google\ Chrome.app %s').open('https://open.spotify.com/playlist/37i9dQZF1DXcZK031Zeh47?si=WlZ6V-bNQOWGS5T7uD53WQ')
+    elif mood=='Fear':
+        webbrowser.get('open -a /Applications/Google\ Chrome.app %s').open('https://open.spotify.com/album/4owrox6fGHGbH3GfyjdfTo?si=9cKVHUXLQiubxPeUKY2MBg')
 
 
     
