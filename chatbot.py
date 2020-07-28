@@ -5,14 +5,16 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 import os
 from src.mood import getMood
+"""from reommend.getRecom import getRecommendation"""
+
 
 
 app = Flask(__name__, template_folder='.')
 app.debug = True
 bot = ChatBot("Candice")
 trainer = ListTrainer(bot)
-trainer.train(['What is your name?', 'Candice'])
-trainer.train(['who are you?', 'I am a BOT'])
+trainer.train(['What is your name?', 'Candice','Who are you?', 'I am a BOT'])
+trainer.train(["What can you do?", "I can detect your mood if you upload an image of your face. Type in upload for this task."])
 trainer = ChatterBotCorpusTrainer(bot)
 trainer.train("chatterbot.corpus.english")
 
@@ -20,14 +22,19 @@ ROUTE=os.path.dirname(os.path.abspath(__file__))
 
 @app.route("/")
 def index():    
-    return render_template("index.html") 
+    return render_template("templates/index.html") 
 
 
 @app.route("/get")
 def get_bot_response():    
     userText = request.args.get('msg')  
-    if userText=="emotion":
-        return render_template("upload.html")
+    if userText=="upload":
+        return render_template("templates/upload.html")
+
+    if userText==int:
+
+
+    
     else:
         return str(bot.get_response(userText)) 
 
@@ -52,7 +59,7 @@ def upload():
 def mood(filename):
     emotion=getMood(f"image/{filename}")
 
-    return render_template("emotion.html",emotion=emotion)
+    return render_template("templates/emotion.html",emotion=emotion), emotion
 
 
 
