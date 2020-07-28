@@ -29,4 +29,4 @@ def getMood(path):
     emotion=get_label(result_num)
     print("Bot: With a probability of " + str(np.max(res[0]))+" you are feeling...")
     
-    return emotion
+    return f"With a probability of {str(np.max(res[0]))} you are feeling...{emotion.lower()}"
