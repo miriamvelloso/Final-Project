@@ -83,10 +83,13 @@
             <div>
                 <div id="chatbox">
                     <p class="botText">
-                        <span>{{emotion}}</span>
+                        <span>{{emotion}}<br/></span>
 
                         <span><br/><br/>I can recommend the following based on your mood:<br/>1. Images<br/>2. Songs<br/>3. Movies<br/><br/>Please enter the corresponding digit.</span>
-                        
+                        <form action="/mood/<{{filename}}>" method="post">
+                          <input type="text" name="mod">
+                          <input type="submit">
+                        </form>
 
                     </p>
                 </div>
