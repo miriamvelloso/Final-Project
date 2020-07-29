@@ -5,7 +5,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 import os
 from src.mood import getMood
-from recommend.getRecom import getRecommendation
+from recommend.recom import getMovie, int_check, getWeb, getSong
 
 
 
@@ -31,9 +31,13 @@ def get_bot_response():
     
     if userText=="upload":
         return render_template("templates/upload.html")
+
     if userText in ["1","2","3"]:
         feeling=emotion.split("...")[-1]
-        getRecommendation(feeling)
+        print(feeling)
+        option=int_check(1,3,userText)
+        print(option)
+        return redirect(url_for("recommendation", feeling=feeling, option=option))
     
     else:
         return str(bot.get_response(userText)) 
@@ -55,11 +59,26 @@ def upload():
     upload.save(destination)
     return redirect(url_for("mood",filename=filename))
 
-@app.route("/mood/<filename>")
+@app.route("/mood/<filename>", methods=['GET','POST'])
 def mood(filename):
     global emotion
     emotion = getMood(f"image/{filename}")
-    return render_template("templates/emotion.html",emotion=emotion)
+    projectpath = request.form.get['mod']
+    print(projectpath)
+    return render_template("templates/emotion.html",emotion=emotion,filename=filename)
+
+"""@app.route("/recommendation/<feeling>/<option>")
+def recommendation(feeling,option):
+    print(feeling,option)
+    if option==1:
+        return getWeb(mood)
+    elif option==2:
+        return getSong(mood)
+    elif option==3:
+        return getMovie(mood)
+    else:
+        print("Sorry there is no recommendation available to your request. Please try antoher one.")
+        return render_template("templates/emotion.html",emotion=feeling,option=option)
 
 
 
