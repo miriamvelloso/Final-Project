@@ -12,7 +12,7 @@ bot = ChatBot(
 ) 
 # create the chatbot
 
-conv=open("input/greet_data.txt", "r").readlines()
+conv=["Hello","How are you","Good"]
 
 trainer=ListTrainer(bot) # set the trainer
 

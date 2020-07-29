@@ -5,7 +5,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from chatterbot.trainers import ListTrainer
 import os
 from src.mood import getMood
-"""from reommend.getRecom import getRecommendation"""
+from recommend.getRecom import getRecommendation
 
 
 
@@ -17,7 +17,6 @@ trainer.train(['What is your name?', 'Candice','Who are you?', 'I am a BOT'])
 trainer.train(["What can you do?", "I can detect your mood if you upload an image of your face. Type in upload for this task."])
 trainer = ChatterBotCorpusTrainer(bot)
 trainer.train("chatterbot.corpus.english")
-
 ROUTE=os.path.dirname(os.path.abspath(__file__))
 
 @app.route("/")
@@ -27,13 +26,14 @@ def index():
 
 @app.route("/get")
 def get_bot_response():    
-    userText = request.args.get('msg')  
+    userText = request.args.get('msg')
+    print(type(userText))
+    
     if userText=="upload":
         return render_template("templates/upload.html")
-
-    if userText==int:
-
-
+    if userText in ["1","2","3"]:
+        feeling=emotion.split("...")[-1]
+        getRecommendation(feeling)
     
     else:
         return str(bot.get_response(userText)) 
@@ -57,9 +57,9 @@ def upload():
 
 @app.route("/mood/<filename>")
 def mood(filename):
-    emotion=getMood(f"image/{filename}")
-
-    return render_template("templates/emotion.html",emotion=emotion), emotion
+    global emotion
+    emotion = getMood(f"image/{filename}")
+    return render_template("templates/emotion.html",emotion=emotion)
 
 
 
