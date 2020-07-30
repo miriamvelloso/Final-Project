@@ -80,7 +80,7 @@ def recommendation(feeling,option):
         print("Sorry there is no recommendation available to your request. Please try antoher one.")
         return render_template("templates/emotion.html",emotion=feeling,option=option)
 
-
+"""
 
 if __name__ == "__main__":    
     app.run()
