@@ -77,20 +77,14 @@
 
     <div>
         <h1 align="center"><b>Welcome to Candice</b></h1>
-        <h4 align="center"><b>The ChatBot recommender that depends on your mood</b></h4>
+        <h4 align="center"><b>The ChatBot recommender depends on your mood</b></h4>
         <p align="center"><img src="https://raw.githubusercontent.com/patelkelvin/Python-BOT/master/templates/favicon.ico" alt="Python-BOT" height="210" width="220"></p>
         <div class="boxed">
             <div>
                 <div id="chatbox">
                     <p class="botText">
-                        <span>{{emotion}}<br/></span>
-
-                        <span><br/><br/>I can recommend the following based on your mood:<br/>1. Images<br/>2. Songs<br/>3. Movies<br/><br/>Please enter the corresponding digit.</span>
-                        <form action="/mood/<{{filename}}>" method="post">
-                          <input type="text" name="mod">
-                          <input type="submit">
-                        </form>
-
+                      <span>{{emotion}}<br/></span>
+                      <span><br/><br/>I can recommend the following based on your mood:<br/>1. Images<br/>2. Songs<br/>3. Movies<br/><br/>Please enter the corresponding digit.</span>
                     </p>
                 </div>
                 <div id="userInput">
@@ -124,3 +118,6 @@
     </div>
 </body>
 </html>
+
+
+

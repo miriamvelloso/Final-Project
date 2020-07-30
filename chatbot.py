@@ -7,9 +7,7 @@ import os
 from src.mood import getMood
 from recommend.recom import getMovie, int_check, getWeb, getSong
 
-
-
-app = Flask(__name__, template_folder='.')
+app = Flask(__name__, template_folder='./templates/')
 app.debug = True
 bot = ChatBot("Candice")
 trainer = ListTrainer(bot)
@@ -21,16 +19,15 @@ ROUTE=os.path.dirname(os.path.abspath(__file__))
 
 @app.route("/")
 def index():    
-    return render_template("templates/index.html") 
+    return render_template("index.html") 
 
 
 @app.route("/get")
 def get_bot_response():    
     userText = request.args.get('msg')
     print(type(userText))
-    
     if userText=="upload":
-        return render_template("templates/upload.html")
+        return render_template("upload.html")
 
     if userText in ["1","2","3"]:
         feeling=emotion.split("...")[-1]
@@ -38,7 +35,6 @@ def get_bot_response():
         option=int_check(1,3,userText)
         print(option)
         return redirect(url_for("recommendation", feeling=feeling, option=option))
-    
     else:
         return str(bot.get_response(userText)) 
 
@@ -63,22 +59,23 @@ def upload():
 def mood(filename):
     global emotion
     emotion = getMood(f"image/{filename}")
-    projectpath = request.form.get['mod']
-    print(projectpath)
-    return render_template("templates/emotion.html",emotion=emotion,filename=filename)
+    return render_template("emotion.html",emotion=emotion)
 
-"""@app.route("/recommendation/<feeling>/<option>")
+@app.route("/recommendation/<feeling>/<option>")
 def recommendation(feeling,option):
-    print(feeling,option)
+    print(feeling,type(option))
+    option=int(option)
     if option==1:
-        return getWeb(mood)
+        print("hello")
+        print(feeling)
+        return getWeb(feeling)
     elif option==2:
-        return getSong(mood)
+        return getSong(feeling)
     elif option==3:
-        return getMovie(mood)
+        return getMovie(feeling)
     else:
         print("Sorry there is no recommendation available to your request. Please try antoher one.")
-        return render_template("templates/emotion.html",emotion=feeling,option=option)
+        return render_template("recommendation.html")
 
 
 
