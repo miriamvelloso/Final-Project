@@ -21,14 +21,8 @@ def getMovie(mood):
     soup=BeautifulSoup(res.text, "html.parser")
     results=soup.select(".lister-item.mode-advanced h3 a")
     movies=[movie.text for movie in results]
-    print("How many recommendations do you want? Please type in a number.")
-    number_movies=int(input("You: "))
-    if len(movies)<number_movies:
-        print(f"Please insert a number no greater than {len(movies)}.")
-        getMovie(mood)
-    else:
-        print(random.sample(movies,number_movies))
-    return movies
+    movies=random.sample(movies,3)
+    return ", ".join(movies)
 
 def int_check(l,h,user_input): #for inputting integers
     s = int(user_input)
@@ -50,20 +44,15 @@ def getWeb(mood):
     return webbrowser.open(recomendaciones[mood])
     
 
-
-def getSong(mood):
+def getPlaylist(mood):
     url="https://open.spotify.com/playlist/"
     recomendaciones={
-        "sad":url,
-        "disgust":url,
-        "angry": url,
-        "fear":url,
+        "sad":url+"4rFp8l9vekheKOpeJLVkar",
+        "disgust":url+"3cu1Oj5DY0FsJicjKh3L1A",
+        "angry": url+"639kcOKOW2e8qmkRT14HqI",
+        "fear":url,"4SjGQDq1wVTUqn8NtGaAzK"
         "happy":url+"37i9dQZF1DX3rxVfibe1L0",
         "neutral":url+"37i9dQZF1DX6VdMW310YC7",
-        "surprise":url+"37i9dQZF1DXcZK031Zeh47?si=WlZ6V-bNQOWGS5T7uD53WQ"
+        "surprise":url+"37i9dQZF1DZ06evO2vjEpW"
         }
     return webbrowser.open(recomendaciones[mood])
-    
-
-  
-
