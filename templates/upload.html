@@ -3,7 +3,7 @@
 <body>
 <style>
   .button {
-    background-color: darkturquoise;
+    background-color: #4169e1;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -15,29 +15,29 @@
     cursor: pointer;
     }
 </style>
-
+​
 <div class="container">
   <div class="row">
     <div class="col">
-
-      <h1 style="color:darkturquoise; font-size:40px;text-align:center;" >Upload an image for a recommendation</h1>
+​
+      <h1 style="color:#4169e1; font-size:20px;text-align:center;" >Upload an image for a recommendation</h1>
       <hr>
-
+​
       <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-
+​
         <div style="color:black;text-align:center;font-size:20px";class="form-group">
           <div class="custom-file">
             <input type="file" class="custom-file-input" name="file" id="image" accept="image/*">
-
+​
           </div>
         </div>
-
+​
         <button class="button">Upload</button>
-
+​
       </form>
     </div>
   </div>
 </div>
-
+​
 </body>
 </html>

@@ -4,6 +4,7 @@ import random
 from src.mood import getMood
 from recommend.getRecom import getRecommendation
 
+"""Este fichero sirve para ejecutar el bot en la Terminal."""
 
 bot = ChatBot(
     'Terminal',
