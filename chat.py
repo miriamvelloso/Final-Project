@@ -10,8 +10,8 @@ bot = ChatBot(
     'Terminal',
      storage_adapter='chatterbot.storage.SQLStorageAdapter',
      database_uri='sqlite:///database.db'
-) 
-# create the chatbot
+) # create the chatbot
+
 
 conv=["Hello","How are you","Good"]
 

@@ -53,7 +53,7 @@ def upload():
     upload.save(destination)
     return redirect(url_for("mood",filename=filename))
 
-@app.route("/mood/<filename>", methods=['POST'])
+@app.route("/mood/<filename>", methods=['GET','POST'])
 def mood(filename):
     global emotion
     emotion = getMood(f"image/{filename}")
